@@ -87,8 +87,12 @@ class Impl {
             targets.add(target.setPackage(clientId));
         }
 
-        return Intent.createChooser(targets.remove(0), header)
-                .putExtra(EXTRA_INITIAL_INTENTS, targets.toArray(new Parcelable[0]));
+        if(targets.size() > 0) {
+            return Intent.createChooser(targets.remove(0), header)
+                    .putExtra(EXTRA_INITIAL_INTENTS, targets.toArray(new Parcelable[0]));
+        }
+        return Intent.createChooser(draft, header)
+                    .putExtra(EXTRA_INITIAL_INTENTS, targets.toArray(new Parcelable[0]));
     }
 
     /**
